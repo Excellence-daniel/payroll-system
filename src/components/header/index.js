@@ -47,7 +47,14 @@ const Header = ({ props }) => {
               </Link>
             </p>
             <p>
-              <Link>Compensation</Link>
+              <Link
+                className={
+                  props?.location?.pathname === "/compensation" ? "active" : ""
+                }
+                to="/compensation"
+              >
+                Compensation
+              </Link>
             </p>
           </div>
         </div>

@@ -14,6 +14,7 @@ import Header from "./components/header";
 import Admin from "./pages/admin";
 import Employees from "./pages/employees";
 import Tax from "./pages/tax";
+import Compensation from "./pages/compensation";
 
 const AppRoutes = (props) => {
   return (
@@ -24,6 +25,7 @@ const AppRoutes = (props) => {
         <Route exact path="/admin" component={Admin} />
         <Route exact path="/employee" component={Employees} />
         <Route exact path="/tax" component={Tax} />
+        <Route exact path="/compensation" component={Compensation} />
       </Switch>
     </div>
   );
