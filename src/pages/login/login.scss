@@ -1,0 +1,37 @@
+.login-page {
+  padding: 3rem;
+
+  .header {
+    .row {
+      align-content: center;
+    }
+    img {
+      width: 20rem;
+    }
+  }
+
+  .login-form {
+    padding: 9rem 0;
+
+    p {
+      margin-top: 15px;
+      label {
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+
+    .forgot-password {
+      margin-left: 10px;
+      font-size: 12px;
+    }
+
+    .btn-login {
+      background: #f97b00b8;
+      height: 3rem;
+      margin-top: 21px;
+      color: white;
+      text-transform: uppercase;
+    }
+  }
+}
