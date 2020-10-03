@@ -7,7 +7,21 @@
 
   .nav-link {
     &.active {
-      background-color: #179d27 !important;
+      background-color: #179d27;
     }
+  }
+
+  .new-btn {
+    background: #179d27;
+    color: white;
+    font-size: 13px;
+  }
+
+  .new-btn {
+    float: right;
+    height: 40px;
+  }
+
+  .employee-details {
   }
 }

@@ -1,0 +1,23 @@
+.empty-data {
+  padding: 13rem;
+  .background {
+    background: #90bb9612;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 100%;
+    margin: 0 auto;
+    img {
+      width: 7rem;
+      display: block;
+      margin: auto;
+      padding: 25px;
+    }
+  }
+  p {
+    margin-top: 13px;
+    // color: #0847a6;
+    text-transform: uppercase;
+    font-size: 15px;
+    text-align: center;
+  }
+}
