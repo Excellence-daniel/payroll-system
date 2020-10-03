@@ -9,9 +9,20 @@ import {
 import { checkIfUserIsLoggedIn } from "./utils/auth";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import LandingPage from "./pages/landing-page";
+import Header from "./components/header";
+import Admin from "./pages/admin";
 
-const AppRoutes = () => {
-  return <Router></Router>;
+const AppRoutes = (props) => {
+  return (
+    <div>
+      <Header props={props} />
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/admin" component={Admin} />
+      </Switch>
+    </div>
+  );
 };
 
 class App extends Component {
@@ -26,7 +37,7 @@ class App extends Component {
         <Switch>
           <Route exact component={Login} path="/login" />
           <Route exact component={Register} path="/register" />
-          <AppRoutes />
+          <AppRoutes props={this.props} />
         </Switch>
       </Router>
     );

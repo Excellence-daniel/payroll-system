@@ -1,0 +1,13 @@
+.admin-page {
+  padding: 3rem 10rem;
+
+  a {
+    color: black;
+  }
+
+  .nav-link {
+    &.active {
+      background-color: #179d27 !important;
+    }
+  }
+}

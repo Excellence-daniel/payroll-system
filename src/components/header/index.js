@@ -1,0 +1,54 @@
+import React from "react";
+import "./header.scss";
+import KRLogo from "../../assets/images/k-r-logo.png";
+import { Link } from "react-router-dom";
+
+const Header = ({ props }) => {
+  console.log(props);
+  console.log("route", props?.location?.pathname);
+  props?.location?.pathname === "/admin"
+    ? console.log("active")
+    : console.log("");
+  return (
+    <div className="header">
+      <div className="row">
+        <div className="col-3">
+          <img src={KRLogo} alt="logo" className="logo" />
+        </div>
+        <div className="col-6"></div>
+        <div className="col-3">
+          <div className="menu">
+            <p>
+              <Link
+                className={
+                  props?.location?.pathname === "/admin" ? "active" : ""
+                }
+                to="/admin"
+              >
+                Admin
+              </Link>
+            </p>
+            <p>
+              <Link
+                className={
+                  props?.location?.pathname === "/employee" ? "active" : ""
+                }
+                to="/employee"
+              >
+                Employee
+              </Link>
+            </p>
+            <p>
+              <Link>Tax</Link>
+            </p>
+            <p>
+              <Link>Compensation</Link>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Header;

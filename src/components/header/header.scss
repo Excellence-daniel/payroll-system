@@ -1,0 +1,29 @@
+.header {
+  .row {
+    align-items: center;
+  }
+  padding: 1rem 3rem;
+  .logo {
+    width: 20rem;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: space-around;
+
+    a {
+      color: black;
+      &:hover {
+        color: #f97b00a6;
+      }
+    }
+
+    .active {
+      background: #f97b00cf;
+      -webkit-text-fill-color: white;
+      padding: 8px 15px;
+      text-align: center;
+      border-radius: 4px;
+    }
+  }
+}
