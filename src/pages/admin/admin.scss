@@ -7,13 +7,14 @@
 
   .nav-link {
     &.active {
-      background-color: #179d27;
+      background-color: #179d2738;
+      color: #179d27;
     }
   }
 
   .new-btn {
-    background: #179d27;
-    color: white;
+    border: 1px solid #179d27;
+    color: #179d27;
     font-size: 13px;
   }
 
