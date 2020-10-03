@@ -4,11 +4,6 @@ import KRLogo from "../../assets/images/k-r-logo.png";
 import { Link } from "react-router-dom";
 
 const Header = ({ props }) => {
-  console.log(props);
-  console.log("route", props?.location?.pathname);
-  props?.location?.pathname === "/admin"
-    ? console.log("active")
-    : console.log("");
   return (
     <div className="header">
       <div className="row">

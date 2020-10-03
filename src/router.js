@@ -35,11 +35,11 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {/* {checkIfUserIsLoggedIn() ? (
-          <Redirect to="/" />
+        {checkIfUserIsLoggedIn() ? (
+          <Redirect to="/admin" />
         ) : (
           <Redirect to="/login" />
-        )} */}
+        )}
         <Switch>
           <Route exact component={Login} path="/login" />
           <Route exact component={Register} path="/register" />

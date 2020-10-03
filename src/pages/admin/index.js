@@ -28,8 +28,8 @@ export default class Admin extends Component {
     const { currentnav } = this.state;
     return (
       <div className="admin-page">
-        <ul class="nav nav-pills">
-          <li class="nav-item">
+        <ul className="nav nav-pills">
+          <li className="nav-item">
             <Link
               onClick={() => this.changeNav(EMPLOYEES)}
               className={`nav-link ${currentnav === EMPLOYEES && "active"}`}
@@ -37,7 +37,7 @@ export default class Admin extends Component {
               Employee Details
             </Link>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <Link
               onClick={() => this.changeNav(REVIEWS)}
               className={`nav-link ${currentnav === REVIEWS && "active"}`}
@@ -45,7 +45,7 @@ export default class Admin extends Component {
               Reviews & Approvals
             </Link>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <Link
               onClick={() => this.changeNav(PAYSLIPS)}
               className={`nav-link ${currentnav === PAYSLIPS && "active"}`}
@@ -53,7 +53,7 @@ export default class Admin extends Component {
               PaySlips
             </Link>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <Link
               onClick={() => this.changeNav(REPORTS)}
               className={`nav-link ${currentnav === REPORTS && "active"}`}
@@ -61,7 +61,7 @@ export default class Admin extends Component {
               Reports
             </Link>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <Link
               onClick={() => this.changeNav(DASHBOARD)}
               className={`nav-link ${currentnav === DASHBOARD && "active"}`}
