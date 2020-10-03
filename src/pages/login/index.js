@@ -23,7 +23,7 @@ class Login extends Component {
           <div className="row">
             <div className="col-md-4 offset-md-4">
               <center>
-                <h4>Welcome Back</h4>
+                <h4>WELCOME BACK</h4>
               </center>
 
               <p>
@@ -38,7 +38,7 @@ class Login extends Component {
                 <input className="form-control my-input" type="password" />
               </p>
               <button type="button" className="btn btn-block btn-login">
-                Login
+                Sign In
               </button>
             </div>
           </div>

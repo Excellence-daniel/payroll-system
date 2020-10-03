@@ -5,8 +5,10 @@ import {
   BrowserRouter as Router,
   Redirect,
 } from "react-router-dom";
-import Login from "./pages/login";
+
 import { checkIfUserIsLoggedIn } from "./utils/auth";
+import Login from "./pages/login";
+import Register from "./pages/register";
 
 const AppRoutes = () => {
   return <Router></Router>;
@@ -16,13 +18,14 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {checkIfUserIsLoggedIn() ? (
+        {/* {checkIfUserIsLoggedIn() ? (
           <Redirect to="/" />
         ) : (
           <Redirect to="/login" />
-        )}
+        )} */}
         <Switch>
           <Route exact component={Login} path="/login" />
+          <Route exact component={Register} path="/register" />
           <AppRoutes />
         </Switch>
       </Router>
