@@ -29,9 +29,9 @@ export default class Register extends Component {
           phoneNumber: this.state.phoneNumber,
         };
         const {
-          data: { User },
+          data: { user },
         } = await axios.post(`${serverUrl()}/auth/register`, body);
-        setAuth(User);
+        setAuth(user);
         this.props.history.push("/admin");
       } catch (e) {
         console.log(e);
@@ -41,8 +41,6 @@ export default class Register extends Component {
   };
 
   validateState = (values) => {
-    console.log({ values });
-
     if (!values.firstname.trim()) {
       alert("enter firstname");
       return false;
@@ -107,6 +105,7 @@ export default class Register extends Component {
                   <input
                     className="form-control my-input"
                     name="email"
+                    type="email"
                     onChange={this.handleInputChange}
                   />
                 </p>
@@ -114,7 +113,7 @@ export default class Register extends Component {
                   <label>Phone Number</label>
                   <input
                     className="form-control my-input"
-                    type="phonenumber"
+                    type="phoneNumber"
                     onChange={this.handleInputChange}
                     name="phoneNumber"
                   />

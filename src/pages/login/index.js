@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import querify from "query-string";
 
 import KRLogo from "../../assets/images/k-r-logo.png";
 import "./login.scss";
-import { serverUrl } from "../../utils/auth";
+import { serverUrl, setAuth } from "../../utils/auth";
 
 class Login extends Component {
   state = {
@@ -17,9 +18,20 @@ class Login extends Component {
   };
 
   login = async () => {
-    const { email, password } = this.state;
-    const body = { email, password };
-    await axios.post(`${serverUrl()}/auth/login`, body);
+    try {
+      const { email, password } = this.state;
+      const body = querify.stringify({ email, password });
+      const {
+        data: { user },
+      } = await axios.get(`${serverUrl()}/auth/login?${body}`);
+      if (user) {
+        setAuth(user);
+        this.props.history.push("/admin");
+      }
+    } catch (e) {
+      console.log("error", e);
+      alert("error, check your console");
+    }
   };
 
   render() {
@@ -57,7 +69,12 @@ class Login extends Component {
                 <span className="forgot-password">
                   <Link to="/forgot-password">Forgot?</Link>
                 </span>
-                <input className="form-control my-input" type="password" />
+                <input
+                  className="form-control my-input"
+                  type="password"
+                  onChange={this.handleInputChange}
+                  name="password"
+                />
               </p>
               <button
                 type="button"
