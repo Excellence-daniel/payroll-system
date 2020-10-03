@@ -39,7 +39,12 @@ const Header = ({ props }) => {
               </Link>
             </p>
             <p>
-              <Link>Tax</Link>
+              <Link
+                className={props?.location?.pathname === "/tax" ? "active" : ""}
+                to="/tax"
+              >
+                Tax
+              </Link>
             </p>
             <p>
               <Link>Compensation</Link>

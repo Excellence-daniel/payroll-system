@@ -13,6 +13,7 @@ import LandingPage from "./pages/landing-page";
 import Header from "./components/header";
 import Admin from "./pages/admin";
 import Employees from "./pages/employees";
+import Tax from "./pages/tax";
 
 const AppRoutes = (props) => {
   return (
@@ -22,6 +23,7 @@ const AppRoutes = (props) => {
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/admin" component={Admin} />
         <Route exact path="/employee" component={Employees} />
+        <Route exact path="/tax" component={Tax} />
       </Switch>
     </div>
   );
