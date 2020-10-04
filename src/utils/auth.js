@@ -9,7 +9,8 @@ export const checkIfUserIsLoggedIn = () => {
 };
 
 export const serverUrl = () => {
-  const url = "http://localhost:4020";
+  // const url = "http://localhost:4020";
+  const url = "https://payroll-k-server.herokuapp.com";
   return url;
 };
 
