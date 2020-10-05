@@ -23,6 +23,7 @@ export default class Admin extends Component {
     currentnav: EMPLOYEES,
     employees: [],
     reports: [],
+    reviews: [],
     employeename: "",
     employeestatus: "",
     employeesalary: 0,
