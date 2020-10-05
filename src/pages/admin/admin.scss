@@ -21,5 +21,15 @@
   .new-btn {
     float: right;
     height: 40px;
+    margin-bottom: 1.5rem;
+  }
+
+  .create-modal {
+    h5 {
+      font-weight: 600;
+    }
+    .create-employee-form {
+      padding: 1rem;
+    }
   }
 }

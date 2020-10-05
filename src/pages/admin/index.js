@@ -7,6 +7,9 @@ import ReviewsApprovals from "../../components/admin/reviews";
 import Payslips from "../../components/admin/payslips";
 import Reports from "../../components/admin/reports";
 import Dashboard from "../../components/admin/dashboard";
+import { CreateEmployeeModal } from "../../components/admin/modals/create-employees";
+import Axios from "axios";
+import { serverUrl } from "../../utils/auth";
 
 const EMPLOYEES = "employees";
 const REVIEWS = "reviews";
@@ -18,10 +21,71 @@ export default class Admin extends Component {
   state = {
     currentnav: EMPLOYEES,
     employees: [],
+    employeename: "",
+    employeestatus: "",
+    employeesalary: 0,
+    employeecontract: 0,
+  };
+
+  componentDidMount = async () => {
+    await this.getEmployees();
+  };
+
+  getEmployees = async () => {
+    try {
+      const {
+        data: { employees },
+      } = await Axios.get(`${serverUrl()}/admin/getEmployees`);
+      this.setState({ employees });
+    } catch (e) {
+      console.log(e, "error getting employess");
+    }
   };
 
   changeNav = (nav) => {
     this.setState({ currentnav: nav });
+  };
+
+  handleCreateEmployeeInputChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
+  };
+
+  handleCreateEmployee = async () => {
+    const {
+      employeename,
+      employeecontract,
+      employeesalary,
+      employeestatus,
+    } = this.state;
+    console.log({ emp: this.state });
+    if (!employeename) {
+      return alert("fill employee name");
+    }
+    if (!employeecontract) {
+      return alert("fill employee contract");
+    }
+    if (!employeesalary) {
+      return alert("fill employee salary");
+    }
+    if (!employeestatus) {
+      return alert("fill employee status");
+    }
+
+    const body = {
+      employeename,
+      employeecontract,
+      employeesalary,
+      employeestatus,
+    };
+    const {
+      data: { employee },
+    } = await Axios.post(`${serverUrl()}/admin/createEmployee`, body);
+    this.setState({ employees: [...this.state.employees, employee] });
+    this.closeEmployeeModal();
+  };
+
+  closeEmployeeModal = () => {
+    document.getElementById("close").click();
   };
 
   render() {
@@ -70,9 +134,16 @@ export default class Admin extends Component {
             </Link>
           </li>
         </ul>
+        <div className="create-modal">
+          <CreateEmployeeModal
+            handleInputChange={this.handleCreateEmployeeInputChange}
+            saveEmployee={this.handleCreateEmployee}
+          />
+        </div>
+
         <div className="admin-display">
           {currentnav === EMPLOYEES ? (
-            <EmployeeDetails />
+            <EmployeeDetails employees={this.state.employees} />
           ) : currentnav === REVIEWS ? (
             <ReviewsApprovals />
           ) : currentnav === PAYSLIPS ? (
