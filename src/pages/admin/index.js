@@ -10,6 +10,7 @@ import Dashboard from "../../components/admin/dashboard";
 import { CreateEmployeeModal } from "../../components/admin/modals/create-employees";
 import Axios from "axios";
 import { serverUrl } from "../../utils/auth";
+import { CreateReportModal } from "../../components/admin/modals/create-report";
 
 const EMPLOYEES = "employees";
 const REVIEWS = "reviews";
@@ -21,10 +22,16 @@ export default class Admin extends Component {
   state = {
     currentnav: EMPLOYEES,
     employees: [],
+    reports: [],
     employeename: "",
     employeestatus: "",
     employeesalary: 0,
     employeecontract: 0,
+    projectname: "",
+    projectstatus: "",
+    assignedto: "",
+    timeline: 0,
+    approved: false,
   };
 
   componentDidMount = async () => {
@@ -42,11 +49,33 @@ export default class Admin extends Component {
     }
   };
 
+  fetchReports = async () => {
+    try {
+      const {
+        data: { reports },
+      } = await Axios.get(`${serverUrl()}/admin/getReports`);
+      this.setState({ reports });
+    } catch (e) {
+      console.log(e, "error getting reports");
+    }
+  };
+
+  fetchReviews = async () => {
+    try {
+      const {
+        data: { reviews },
+      } = await Axios.get(`${serverUrl()}/admin/fetchReviews`);
+      this.setState({ reviews });
+    } catch (e) {
+      console.log(e, "error getting reports");
+    }
+  };
+
   changeNav = (nav) => {
     this.setState({ currentnav: nav });
   };
 
-  handleCreateEmployeeInputChange = ({ target: { name, value } }) => {
+  handleInputChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
   };
 
@@ -57,7 +86,6 @@ export default class Admin extends Component {
       employeesalary,
       employeestatus,
     } = this.state;
-    console.log({ emp: this.state });
     if (!employeename) {
       return alert("fill employee name");
     }
@@ -81,11 +109,50 @@ export default class Admin extends Component {
       data: { employee },
     } = await Axios.post(`${serverUrl()}/admin/createEmployee`, body);
     this.setState({ employees: [...this.state.employees, employee] });
-    this.closeEmployeeModal();
+    this.closeModal();
   };
 
-  closeEmployeeModal = () => {
+  handleCreateReport = async () => {
+    const {
+      projectname,
+      projectstatus,
+      assignedto,
+      timeline,
+      approved,
+    } = this.state;
+    if (!projectname) {
+      return alert("fill project name");
+    }
+    if (!projectstatus) {
+      return alert("fill project status");
+    }
+    if (!timeline) {
+      return alert("fill timeline");
+    }
+    if (!assignedto) {
+      return alert("fill assigned to");
+    }
+
+    const body = {
+      projectname,
+      projectstatus,
+      assignedto,
+      timeline,
+      approved,
+    };
+    const {
+      data: { report },
+    } = await Axios.post(`${serverUrl()}/admin/createReport`, body);
+    this.setState({ reports: [...this.state.reports, report] });
+    return this.closeReportModal();
+  };
+
+  closeModal = () => {
     document.getElementById("close").click();
+  };
+
+  closeReportModal = () => {
+    document.getElementById("close-report-modal").click();
   };
 
   render() {
@@ -136,8 +203,12 @@ export default class Admin extends Component {
         </ul>
         <div className="create-modal">
           <CreateEmployeeModal
-            handleInputChange={this.handleCreateEmployeeInputChange}
+            handleInputChange={this.handleInputChange}
             saveEmployee={this.handleCreateEmployee}
+          />
+          <CreateReportModal
+            handleInputChange={this.handleInputChange}
+            saveReport={this.handleCreateReport}
           />
         </div>
 
@@ -145,11 +216,17 @@ export default class Admin extends Component {
           {currentnav === EMPLOYEES ? (
             <EmployeeDetails employees={this.state.employees} />
           ) : currentnav === REVIEWS ? (
-            <ReviewsApprovals />
+            <ReviewsApprovals
+              fetchReviews={this.fetchReviews}
+              reviews={this.state.reviews}
+            />
           ) : currentnav === PAYSLIPS ? (
             <Payslips />
           ) : currentnav === REPORTS ? (
-            <Reports />
+            <Reports
+              fetchReports={this.fetchReports}
+              reports={this.state.reports}
+            />
           ) : currentnav === DASHBOARD ? (
             <Dashboard />
           ) : null}
