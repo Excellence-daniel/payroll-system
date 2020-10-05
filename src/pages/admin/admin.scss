@@ -13,8 +13,6 @@
   }
 
   .new-btn {
-    border: 1px solid #179d27;
-    color: #179d27;
     font-size: 13px;
   }
 
@@ -22,6 +20,21 @@
     float: right;
     height: 40px;
     margin-bottom: 1.5rem;
+
+    color: white;
+    background: #179d27;
+  }
+
+  .download-btn {
+    margin-right: 10px;
+    border: 1px solid #179d27;
+    color: #179d27;
+    background: transparent;
+
+    img {
+      width: 13px;
+      margin-left: 11px;
+    }
   }
 
   .create-modal {
